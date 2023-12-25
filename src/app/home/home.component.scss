@@ -1,0 +1,44 @@
+.search-game {
+
+    label {
+        font-size: 16px;
+        color: #005c7b;
+        font-weight: bold;
+    }
+
+}
+
+.list-games {
+
+    a {
+        text-decoration: none;
+    }
+
+    .card {
+
+        border: none;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        &:hover {
+
+            cursor: pointer;
+            background-color: gainsboro;
+
+            img {
+                opacity: 0.8;
+            }
+        }
+
+        .badge-tag {
+            color: white;
+            background-color: #005c7b;
+
+            &:nth-child(1) {
+                background-color: red !important;
+            }
+        }
+
+        //#ffdc34
+
+    }
+}

@@ -1,0 +1,82 @@
+<div id="main" class="container">
+
+    <div class="row">
+
+        <!-- Left column with game title and thumbnail -->
+        <div class="col-md-4 text-center">
+            <div class="card-block">
+                <h4>{{game.title}}</h4>
+                <img src="{{game.thumbnail}}" width="100%"/>
+            </div>
+        </div>
+
+        <!-- Right column with game description, additional information, screenshots, and system requirements -->
+        <div class="col-md-7">
+            <!-- Game description -->
+            <div class="description card-block">
+                <h3>Description</h3>
+                <hr class="mt-2 mb-3">
+                <p>{{game.description}}</p>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="additional-information card-block">
+                <h3>Additional Information</h3>
+                <hr class="mt-2 mb-3">
+                <div class="row mb-3">
+                    <div class="col-6 col-md-4">
+                        <span class="text-muted">Title<br></span>
+                        <p>{{game.title}}</p>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <span class="text-muted">Developer<br></span>{{game.developer}}
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <span class="text-muted">Publisher<br></span>{{game.publisher}}
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <span class="text-muted">Release Date<br></span>{{game.release_date | date: 'longDate'}}
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <span class="text-muted">Genre<br></span>{{game.genre}}
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <span class="text-muted">Platform<br></span>{{game.platform}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screenshots section -->
+            <div class="screenshots card-block">
+                <h3>Screenshots</h3>
+                <hr class="mt-2 mb-3">
+                <div class="row text-center text-lg-left">
+                    <div class="col-lg-4 col-md-4 col-6" *ngFor="let item of game.screenshots">
+                        <img class="rounded" src={{item.image}} width="100%" height="100%" alt="Lost Ark Thumbnail">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minimum System Requirements section -->
+            <div class="minimum-system card-block" *ngIf="game.minimum_system_requirements">
+                <h3>Minimum System Requirements</h3>
+                <hr class="mt-2 mb-3">
+                <div class="row">
+                    <div class="col-sm-6"> <span class="text-muted">OS<br></span>
+                        <p>Windows XP, Vista or 7 </p> <span class="text-muted">Memory<br></span>
+                        <p>512MB for Windows XP or 1GB for Windows Vista/7 </p> <span
+                            class="text-muted">Storage<br></span>
+                        <p>700MB</p>
+                    </div>
+                    <div class="col-sm-6"> <span class="text-muted">Processor<br></span>
+                        <p>1.3ghz processor </p> <span class="text-muted">Graphics<br></span>
+                        <p>64MB Video Memory. GeForce 5 series, ATI Radeon 8500. Latest video driver. </p> <span
+                            class="text-muted">Additional Notes<br></span>
+                        <p>Specifications may change during development</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

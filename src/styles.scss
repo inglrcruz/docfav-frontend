@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+body {
+    background-color: #f7f7f7;
+}
+
+#main {
+    padding: 30px;
+    min-height: 90vh;
+}
+
+.badge-tag {
+    padding: 3px 8px 3px 8px;
+    font-size: 13px;
+    border-radius: 8px;
+    // border: solid 1px gainsboro;
+    margin-right: 10px;
+}
+
+.card-block {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
