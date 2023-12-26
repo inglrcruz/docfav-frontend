@@ -1,82 +1,123 @@
 <div id="main" class="container">
 
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{game.title}}</li>
+        </ol>
+    </nav>
+
     <div class="row">
 
         <!-- Left column with game title and thumbnail -->
-        <div class="col-md-4 text-center">
+        <div class="col-md-4">
+
+            <!-- Title and thumbnail -->
             <div class="card-block">
-                <h4>{{game.title}}</h4>
-                <img src="{{game.thumbnail}}" width="100%"/>
+                <h4 class="title-card-block">{{game.title}}</h4>
+                <img src="{{game.thumbnail}}" width="100%" />
             </div>
+
+            <!-- Related games -->
+            <div class="related-games card-block" *ngIf="games.length">
+                <h4 class="title-card-block">Related games</h4>
+                <hr class="mt-2 mb-3">
+                <a class="related" *ngFor="let game of games" href="/game/{{game.id}}">
+                    <img class="rounded" src="{{game.thumbnail}}" alt="{{game.title}}">
+                    <div class="info">
+                        <h5>{{game.title | slice:0:20}}</h5>
+                        <p>{{game.short_description | slice:0:28}}...</p>
+                    </div>
+                </a>
+            </div>
+
         </div>
 
         <!-- Right column with game description, additional information, screenshots, and system requirements -->
         <div class="col-md-7">
+
             <!-- Game description -->
             <div class="description card-block">
-                <h3>Description</h3>
+                <h4 class="title-card-block">Description</h4>
                 <hr class="mt-2 mb-3">
-                <p>{{game.description}}</p>
+                <p [innerHTML]="game.description"></p>
             </div>
 
             <!-- Additional Information -->
             <div class="additional-information card-block">
-                <h3>Additional Information</h3>
+                <h4 class="title-card-block">Additional Information</h4>
                 <hr class="mt-2 mb-3">
                 <div class="row mb-3">
                     <div class="col-6 col-md-4">
                         <span class="text-muted">Title<br></span>
-                        <p>{{game.title}}</p>
+                        <p class="text-description">{{game.title}}</p>
                     </div>
                     <div class="col-6 col-md-4">
-                        <span class="text-muted">Developer<br></span>{{game.developer}}
+                        <span class="text-muted">Developer<br></span>
+                        <p class="text-description">{{game.developer}}</p>
                     </div>
                     <div class="col-6 col-md-4">
-                        <span class="text-muted">Publisher<br></span>{{game.publisher}}
+                        <span class="text-muted">Publisher<br></span>
+                        <p class="text-description">{{game.publisher}}</p>
                     </div>
                     <div class="col-6 col-md-4">
-                        <span class="text-muted">Release Date<br></span>{{game.release_date | date: 'longDate'}}
+                        <span class="text-muted">Release Date<br></span>
+                        <p class="text-description">{{game.release_date | date: 'longDate'}}</p>
                     </div>
                     <div class="col-6 col-md-4">
-                        <span class="text-muted">Genre<br></span>{{game.genre}}
+                        <span class="text-muted">Genre<br></span>
+                        <p class="text-description">{{game.genre}}</p>
                     </div>
                     <div class="col-6 col-md-4">
-                        <span class="text-muted">Platform<br></span>{{game.platform}}
+                        <span class="text-muted">Platform<br></span>
+                        <p class="text-description">{{game.platform}}</p>
                     </div>
                 </div>
             </div>
 
             <!-- Screenshots section -->
             <div class="screenshots card-block">
-                <h3>Screenshots</h3>
+                <h4 class="title-card-block">Screenshots</h4>
                 <hr class="mt-2 mb-3">
                 <div class="row text-center text-lg-left">
-                    <div class="col-lg-4 col-md-4 col-6" *ngFor="let item of game.screenshots">
-                        <img class="rounded" src={{item.image}} width="100%" height="100%" alt="Lost Ark Thumbnail">
+                    <div class="col-lg-4 col-md-4 col-6 mb-3" *ngFor="let item of game.screenshots">
+                        <img class="rounded" src="{{item.image}}" width="100%" height="100%"
+                            (click)="showScreenshot(item.image)" alt="{{game.title}} Thumbnail">
                     </div>
                 </div>
             </div>
 
             <!-- Minimum System Requirements section -->
             <div class="minimum-system card-block" *ngIf="game.minimum_system_requirements">
-                <h3>Minimum System Requirements</h3>
+                <h4 class="title-card-block">Minimum System Requirements</h4>
                 <hr class="mt-2 mb-3">
                 <div class="row">
                     <div class="col-sm-6"> <span class="text-muted">OS<br></span>
-                        <p>Windows XP, Vista or 7 </p> <span class="text-muted">Memory<br></span>
-                        <p>512MB for Windows XP or 1GB for Windows Vista/7 </p> <span
-                            class="text-muted">Storage<br></span>
-                        <p>700MB</p>
+                        <p class="text-description">{{game.minimum_system_requirements.os}}</p>
+                        <span class="text-muted">Memory<br></span>
+                        <p class="text-description">{{game.minimum_system_requirements.memory}}</p>
+                        <span class="text-muted">Storage<br></span>
+                        <p class="text-description">{{game.minimum_system_requirements.storage}}</p>
                     </div>
                     <div class="col-sm-6"> <span class="text-muted">Processor<br></span>
-                        <p>1.3ghz processor </p> <span class="text-muted">Graphics<br></span>
-                        <p>64MB Video Memory. GeForce 5 series, ATI Radeon 8500. Latest video driver. </p> <span
-                            class="text-muted">Additional Notes<br></span>
-                        <p>Specifications may change during development</p>
+                        <p class="text-description">{{game.minimum_system_requirements.processor}}</p>
+                        <span class="text-muted">Graphics<br></span>
+                        <p class="text-description">{{game.minimum_system_requirements.graphics}}</p>
+                        <span class="text-muted">Additional Notes<br></span>
+                        <p class="text-description">Specifications may change during development</p>
                     </div>
                 </div>
             </div>
 
         </div>
+    </div>
+</div>
+
+<!-- Screenshot view  -->
+<div id="screenshot-view" *ngIf="screenshot" (click)="showScreenshot('')">
+    <div class="screenshot-img">
+        <span class="close" (click)="showScreenshot('')">X Close</span>
+        <img class="rounded" src="{{screenshot}}" alt="Screenshot view">
     </div>
 </div>

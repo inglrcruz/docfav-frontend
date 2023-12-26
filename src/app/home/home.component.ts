@@ -1,23 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GameService } from '../services/game/game.service';
 import { GamesInterface } from '../interfaces/game';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
+  public limit: number = 0
+  public genres: any = environment.genres
   public results: GamesInterface[] = []
   public filterItems: GamesInterface[] = []
   public frmSrh: any = { name: "", platform: "", genre: "" }
 
-  constructor(private gameServ: GameService) {
+  constructor(private gameServ: GameService) { }
+
+  ngOnInit(): void {
     this.gameServ.getGames().subscribe({
       next: (resp: GamesInterface[]) => {
-        this.filterItems = resp
         this.results = resp
+        this.loadMore()
       },
       error: (e: any) => {
         console.log(e)
@@ -25,52 +30,30 @@ export class HomeComponent {
     })
   }
 
+  /**
+   * Filters the games based on the search criteria (name, genre, platform).
+   */
   searchGame() {
-
-    // Store the original results once for efficiency
-    const originalResults = this.results
-
-    // Filter based on name, genre, and platform, combining conditions
-    this.filterItems = originalResults.filter((i: GamesInterface) => {
+    const results = this.results.filter((i: GamesInterface) => {
       const searchName = this.frmSrh.name && this.frmSrh.name.toLowerCase()
       const searchGenre = this.frmSrh.genre && this.frmSrh.genre.toLowerCase()
       const searchPlatform = this.frmSrh.platform && this.frmSrh.platform.toLowerCase()
-
       return (
         (!searchName || i.title.toLowerCase().includes(searchName)) &&
         (!searchGenre || i.genre.toLowerCase().includes(searchGenre)) &&
         (!searchPlatform || i.platform.toLowerCase().includes(searchPlatform))
       )
     })
+    this.limit = 0
+    this.loadMore(results)
+  }
 
-    // Log the final filtered count
-    console.log("Filtered items: " + this.filterItems.length)
-
-
-    //let list = this.results
-
-    //if (this.frmSrh.name) {
-    //  this.filterItems = this.results.filter((i: GamesInterface) => {
-    //    return i.title.toLowerCase().includes(this.frmSrh.name.toLowerCase())
-    //  })
-    //  console.log("Name: " + this.filterItems.length)
-    //}
-
-    //if (this.frmSrh.genre !== "all") {
-    //  this.filterItems = this.results.filter((i: GamesInterface) => {
-    //    return i.genre.toLowerCase().includes(this.frmSrh.genre.toLowerCase())
-    //  })
-    //  console.log("Gendre: " + this.filterItems.length)
-    //}
-
-    //if (this.frmSrh.platform !== "all") {
-    //  this.filterItems = this.results.filter((i: GamesInterface) => {
-    //    return i.platform.toLowerCase().includes(this.frmSrh.platform.toLowerCase())
-    //  })
-    //  console.log("Platform: " + this.filterItems.length)
-    //}
-
-    //this.filterItems = list
+  /**
+   * Increases the limit of displayed games and updates the filtered list accordingly.
+   */
+  loadMore(results: GamesInterface[] = []) {
+    this.limit = this.limit + 52
+    this.filterItems = (!results.length) ? this.results.slice(0, this.limit) : results.slice(0, this.limit)
   }
 
 }

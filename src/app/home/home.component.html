@@ -1,21 +1,23 @@
 <div id="main" class="container">
 
+    <div class="main-block">
+        <h4 class="text-center">Browser you favorite Games</h4>
+    </div>
+
+    <!-- Filter options -->
     <form class="row search-game mt-4" #formGame="ngForm">
         <div class="form-group col-md-6">
             <label for="nombre">Filter by name</label>
             <input type="text" class="form-control form-control-lg" name="name" #name="ngModel"
-                [(ngModel)]="frmSrh.name" placeholder="Ingrese el nombre del juego" (keyup)="searchGame()">
+                [(ngModel)]="frmSrh.name" placeholder="Type name of the game..." (keyup)="searchGame()">
         </div>
         <div class="form-group col-md-3">
             <label for="genero">Filter by gender</label>
             <select class="form-control form-control-lg" name="genre" #genre="ngModel" [(ngModel)]="frmSrh.genre"
                 (change)="searchGame()">
                 <option value="" selected>All</option>
-                <option value="mmorpg">MMORPG</option>
-                <option value="shooter">Shooter</option>
-                <option value="strategy">Strategy</option>
-                <option value="moba">Moba</option>
-                <option value="racing">Racing</option>
+                <option *ngFor="let opt of genres" [value]="opt">{{ opt }}</option>
+
             </select>
         </div>
         <div class="form-group col-md-3">
@@ -28,20 +30,31 @@
             </select>
         </div>
     </form>
-    <h5 class="mt-4">Game List ({{filterItems.length}})</h5>
+
+    <!-- List Games -->
     <div class="row list-games">
+        <div class="col-md-6">
+            <h5 class="mt-4">Game List</h5>
+        </div>
+        <div class="col-md-6 text-right">
+            <h5 class="mt-4">Total <small>({{filterItems.length}})</small></h5>
+        </div>
         <div class="col-md-3" *ngFor="let game of filterItems">
             <a href="/game/{{game.id}}">
                 <div class="card mb-4">
                     <img src="{{game.thumbnail}}" class="card-img-top" alt="{{game.title}}">
                     <div class="card-body">
-                        <h5 class="card-title">{{game.title | slice:0:25 }}</h5>
+                        <h5 class="card-title">{{game.title | slice:0:20 }}</h5>
                         <p class="card-text">{{game.short_description | slice:0:60 }}...</p>
                         <span class="badge-tag">{{game.genre}}</span>
                         <span class="badge-tag">{{game.platform}}</span>
                     </div>
                 </div>
             </a>
+        </div>
+        
+        <div class="col-md-12 text-center" *ngIf="limit <= results.length && (filterItems.length >= 52 && results.length >= 52) ">
+            <button type="button" class="btn btn-outline-secondary" (click)="loadMore()">Load more</button>
         </div>
     </div>
 

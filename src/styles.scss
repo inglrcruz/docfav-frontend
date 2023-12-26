@@ -9,14 +9,13 @@ body {
 
 #main {
     padding: 30px;
-    min-height: 90vh;
+    min-height: 88vh;
 }
 
 .badge-tag {
     padding: 3px 8px 3px 8px;
-    font-size: 13px;
+    font-size: 12px;
     border-radius: 8px;
-    // border: solid 1px gainsboro;
     margin-right: 10px;
 }
 
@@ -26,4 +25,31 @@ body {
     border-radius: 10px;
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    .title-card-block {
+        font-size: 22px;
+        color: #005c7b;
+        font-weight: bold;
+    }
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-muted,
+.text-description {
+    font-size: 15px;
+}
+
+input[type="text"],
+select {
+    border-width: 2px !important
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #005c7b !important;
+    box-shadow: none !important;
 }

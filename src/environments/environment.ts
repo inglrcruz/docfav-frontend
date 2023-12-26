@@ -2,11 +2,11 @@ export const environment = {
     production: true,
     apiUrl: 'https://www.freetogame.com/api/',
     genres: [
-        "mmorpg", "shooter", "strategy", "moba", "racing", "sports", "social", "sandbox",
-        "open-world", "survival", "pvp", "pve", "pixel", "voxel", "zombie", "turn-based",
-        "first-person", "third-Person", "top-down", "tank", "space", "sailing", "side-scroller",
-        "superhero", "permadeath", "card", "battle-royale", "mmo", "mmofps", "mmotps",
-        "3d", "2d", "anime", "fantasy", "sci-fi", "fighting", "action-rpg", "action", "military",
-        "martial-arts", "flight", "low-spec", "tower-defense", "horror", "mmorts"
+        "MMORPG", "Shooter", "Strategy", "Moba", "Racing", "Sports", "Social", "Sandbox",
+        "Open-World", "Survival", "PVP", "PVE", "Pixel", "Voxel", "Zombie", "Turn-Based",
+        "First-Person", "Third-Person", "Top-Down", "Tank", "Space", "Sailing", "Side-Scroller",
+        "Superhero", "Permadeath", "Card", "Battle-Royale", "MMO", "MMOFPS", "MMOTPS",
+        "3d", "2d", "Anime", "Fantasy", "Sci-Fi", "Fighting", "Action-rpg", "Action", "Military",
+        "Martial-Arts", "Flight", "Low-Spec", "Tower-Defense", "Horror", "MMORTS"
     ]
 };

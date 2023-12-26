@@ -1,3 +1,115 @@
-.screenshots img {
+/** Breadcrumb section **/
+.breadcrumb {
 
+    a {
+        color: #005c7b;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}
+
+/** Related games section **/
+.related-games {
+
+    .related {
+
+        cursor: pointer;
+        padding: 8px;
+        margin-bottom: 8px;
+        display: block;
+        color: #353535;
+        text-decoration: none;
+        border-bottom: dashed 1px gainsboro;
+
+        &:hover {
+            background-color: gainsboro;
+        }
+
+        &:last-child {
+            margin-bottom: 0px;
+            border-bottom: none;
+        }
+
+        img,
+        .info {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        img {
+            width: 30%;
+            height: 100%;
+        }
+
+        .info {
+            width: 70%;
+            padding-left: 10px;
+
+            h5 {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 0px;
+            }
+
+            p {
+                margin: 0px;
+                font-size: 16px;
+                color: rgba(33, 37, 41, 0.75);
+            }
+
+        }
+
+    }
+}
+
+/** Screenshots section **/
+.screenshots {
+
+    img {
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+/** Screenshot view section **/
+#screenshot-view {
+
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    position: fixed;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    .close {
+        float: right;
+        color: #333;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        width: 80px;
+        border-radius: 5px;
+        text-align: center;
+        position: absolute;
+        top: 10px;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .screenshot-img {
+
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    }
 }

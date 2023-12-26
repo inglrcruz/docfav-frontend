@@ -1,3 +1,18 @@
+.main-block {
+
+    h4 {
+        margin-top: 20px;
+        margin-bottom: 0;
+        font-weight: bold;
+        color: #484848;
+    }
+
+    padding: 10px;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+    border-bottom: dashed 1px gainsboro;
+}
+
 .search-game {
 
     label {
@@ -6,12 +21,27 @@
         font-weight: bold;
     }
 
+    input {
+        font-size: 18px;
+    }
+
+    select {
+        font-size: 18px;
+    }
+
 }
 
 .list-games {
 
     a {
         text-decoration: none;
+    }
+
+    h5 {
+        color: #484848;
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: 5px;
     }
 
     .card {
@@ -37,8 +67,6 @@
                 background-color: red !important;
             }
         }
-
-        //#ffdc34
 
     }
 }

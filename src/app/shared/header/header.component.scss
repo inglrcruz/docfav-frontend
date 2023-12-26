@@ -1,8 +1,15 @@
 header {
-    
-    .navbar {
-        background-color: #005c7b;
-        // border-bottom: solid 1px gainsboro;
-    }
 
+    .navbar {
+        
+        background-color: #005c7b;
+
+        a {
+            font-size: 25px;
+            margin: 0 auto;
+            color: white;
+            padding: 5px 10px 5px 10px;
+            border-radius: 10px;
+        }
+    }
 }
